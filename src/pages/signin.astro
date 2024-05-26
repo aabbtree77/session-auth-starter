@@ -1,0 +1,14 @@
+---
+if (Astro.locals.user) {
+	return Astro.redirect("/user");
+}
+
+// Component Imports
+import SiteLayout from '../layouts/SiteLayout.astro';
+import SigninPage from '../components/SigninPage';
+---
+
+<SiteLayout>
+	<SigninPage client:load />	
+</SiteLayout>
+

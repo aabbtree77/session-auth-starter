@@ -1,0 +1,14 @@
+---
+const user = Astro.locals.user;
+if (!user) {
+	return Astro.redirect("/");
+}
+
+import SiteLayout from '../layouts/SiteLayout.astro';
+import UserPage from '../components/UserPage';
+---
+
+<SiteLayout>
+	{/* Test useContext magic later on to propagate user through children without explicit inputs */}
+	<UserPage client:load userName={user.username} userID={user.id}/>
+</SiteLayout>

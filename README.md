@@ -56,25 +56,9 @@ So far, I have continued with
 There is a lot to do, like blocking everything GUI-reachable when a user submits a form, not just the form. Turn an in-memory SQLite
 to an in-process file-based SQLite managed with, say, Drizzle ORM. CSRF protection and all sorts of other protections.
 
-The only problem is that I do not find Astro to be a good React metaframework. I have encountered React warnings: [418](https://react.dev/errors/418?invariant=418), [423](https://react.dev/errors/423?invariant=423), absolute paths, very confusing ".astro" syntax (is this part HTML, or JSX, or neither). "client:load" annotations allowed only in ".astro" files. 
+The only problem is that I do not find Astro to be a good React metaframework. I have encountered React warnings: [418](https://react.dev/errors/418?invariant=418), [423](https://react.dev/errors/423?invariant=423), absolute paths, very confusing ".astro" syntax. Is this part HTML, or JSX, or neither, "client:load" annotations allowed only in ".astro" files, cannot call any ".astro" code from React, why ".astro" instead of JSX/React?
 
-## The Best Way to CRUD?
-
-Embrace Next.js with paid 3rd party services, or build more slowly with full control by starting with just a router?
-
-We have already got a few good pieces. Typescript as a single static language for FE and BE. Node.js on a VPS. Minimal React (Vite, perhaps no client side routing at all) solves templating. Lucia v3 shows the way to proceed with authentication. 
-
-The rest is not so clear to me. It could be Drizzle ORM with its studio to manage SQLite on a self hosted VPS, or on Turso. Or Mongo DB, self-hosted or Atlas? 
-
-The only horror story here is a web framework or a metaframework, all these server-client blending games. It should be something light, a router like Express or Hono, allowing to trace requests and debug code when things go wrong, higher level magic is not worth it.
-
-Stack 1: MERN + Atlas + VPS + Custom Lucia v3 inspired Auth, Vanilla JavaScript, Tailwind, no React, ChatGPT 3.5.
-
-or
-
-Stack 2: Hono + Drizzle + SQLite + VPS + Lucia v3, TypeScript, Tailwind, minimal React, Vite, ChatGPT 4o.
-
-The second stack is not that much better. TypeScript will catch typos, but will also add complexity irrelevant to business logic. React will give more readable structure and all the libs, but this is again, an extra layer and compiler which does not help that much with forms or custom landing page carousels.
+My requirements for a web framework or a metaframework: No server-client blending games. It should be something light, a router like Express or Hono, allowing to trace requests and debug code when things go wrong.
 
 TBC...
 

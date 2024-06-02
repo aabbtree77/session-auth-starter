@@ -58,25 +58,31 @@ to an in-process file-based SQLite managed with, say, Drizzle ORM. CSRF protecti
 
 The only problem is that I do not find Astro to be a good React metaframework. I have encountered React warnings: [418](https://react.dev/errors/418?invariant=418), [423](https://react.dev/errors/423?invariant=423), absolute paths, very confusing ".astro" syntax (is this part HTML, or JSX, or neither). "client:load" annotations allowed only in ".astro" files. 
 
-I am ready to bite the bullet and go with the newest Next.js. The only dilemma is whether to embrace the culture of delegation to paid 3rd party services, or continue buildings things slowly with a full control, as in this [Lucia v3 based authentication in Next.js](https://www.youtube.com/@ugurcodes/videos).
+## The Best Way to CRUD?
 
-Why not to go back to MERN? It has not solved authentication, also too much Js surrounding it. On the other hand, it is not like Next.js solves a lot, though it certainly adds complexity. What a mess.
- 
-## Some Food for Thought
+Embrace Next.js with paid 3rd party services, or build more slowly with full control by starting with just a router?
 
-1. Wordpress and "no code" solutions.
+We have already got a few good pieces. Typescript as a single static language for FE and BE. Node.js on a VPS. Minimal React (Vite, perhaps no client side routing at all) solves templating. Lucia v3 shows the way to proceed with authentication. 
 
-2. ChatGPT prompt: "Describe, as briefly as possible, the difference between a library and a framework. Answer: "Library: You call the code. Framework: The framework calls your code."
+The rest is not so clear to me. It could be Drizzle ORM with its studio to manage SQLite on a self hosted VPS, or on Turso. Or Mongo DB, self-hosted or Atlas? 
 
-3. Why do we not have anything like Blender in computer graphics or Unity/Unreal in computer games?
+The only horror story here is a web framework or a metaframework, all these server-client blending games. It should be something light, a router like Express or Hono, allowing to trace requests and debug code when things go wrong, higher level magic is not worth it.
 
-4. One-man army vs. big web companies: Thibault Duplessis of lichess.org fame. A single man builds a service which takes [$420K/year to run](https://www.reddit.com/r/datasets/comments/s5dwdd/cost_breakdown_to_run_a_chess_website_it_takes/), entirely ad-free and donation-based. Talk about what one can do with a variable and a for loop.
+Stack 1: MERN + Atlas + VPS + Custom Lucia v3 inspired Auth, Vanilla JavaScript, Tailwind, no React, ChatGPT 3.5.
 
-## Useful References
+or
+
+Stack 2: Hono + Drizzle + SQLite + VPS + Lucia v3, TypeScript, Tailwind, minimal React, Vite, ChatGPT 4o.
+
+The second stack is not that much better. TypeScript will catch typos, but will also add complexity irrelevant to business logic. React will give more readable structure and all the libs, but this is again, an extra layer and compiler which does not help that much with forms or custom landing page carousels.
+
+TBC...
+
+## References
 
 1. [Web Dev Cody: How much money did my channel earn this year. youtube, 2024](https://www.youtube.com/watch?v=qwXvW_fN_9k)
 
-2. Lichess.org: [Its Tech Stack](https://lichess.org/source), [Server Costs](https://docs.google.com/spreadsheets/d/1Si3PMUJGR9KrpE5lngSkHLJKJkb0ZuI4/preview)
+2. Lichess.org: [Technology Stack](https://lichess.org/source), [Server Costs](https://docs.google.com/spreadsheets/d/1Si3PMUJGR9KrpE5lngSkHLJKJkb0ZuI4/preview)
 
 2. [Web Dev Cody: How do server side authentication sessions work (express & cookies). youtube, 2023](https://www.youtube.com/watch?v=BgsQrOHNKeY&t=6s)
 

@@ -61,15 +61,13 @@ So far, I have continued with
 There is still a lot to do, like blocking everything GUI-reachable when a user submits a form, not just the form. Turn an in-memory SQLite
 to an in-process file-based SQLite managed with, say, Drizzle ORM. CSRF protection and all sorts of other protections.
 
-The weakest link in this whole technology stack is a metaframework, and I do not find Astro to be a solid React metaframework to begin with. This warrants a discussion.
+The weakest link in this whole technology stack is a metaframework.
 
-## Why Do We Need a Metaframework? 
+## Why Do We Need Metaframeworks? 
 
-The problem is React, and the desire to reuse it on the server side without yet another obscure server side templating. This creates huge problems and perpetual server-client blending games. It is a popular problem, and it might make things better eventually when it becomes solved, not now. 
+The problem is React, and the desire to reuse it on the server side instead of some obscure templating.
 
-If we do not need templates on the server side, only do DB stuff and respond with json messages to fetch API POST/GET requests received from the frontend by some advanced router library (Express, Hono), a metaframework is not needed.
-
-Rendering React on the server side with routers and libs manually is kind of ugly. 
+Rendering React on the server side manually is cumbersome.
 
 Typically, one must first convert a React component to a string, e.g. 
 
@@ -78,7 +76,7 @@ import { renderToString } from 'react-dom/server';
 const htmlString = renderToString(<MyReactComp />);
 ```
     
-However, it is then not enough to simply respond with HTML inside, say, Hono:
+JSX thus becomes an HTML which can be rendered inside, say, Hono route:
 
 ```jsx
 app.get('/', (ctx) => {
@@ -98,7 +96,7 @@ return ctx.html(`
 });
 ```
 
-The HTML part needs to load all the aux transpiler stuff and do "Js hydration". Since JSX needs to become Js, we now must stringify the React component the second time:
+However, this is not enough and one must add "Js hydration". Since JSX needs to become Js, we must stringify the React component the second time:
     
 ```jsx
 return ctx.html(`
@@ -124,25 +122,17 @@ return ctx.html(`
 `);
 ```
     
-Obviously this is very ugly, esp. if you want to use components inside components with all the props and state and async codes. This is the problem that Next.js, Remix, SvelteKit, and nowadays Astro, have been solving.
-
-Astro can indeed serve as a React metaframework, as one can see even in this github repo. It hides a lot of that stringification complexity, and as a user all I need is minimal "*.astro" files inside pages as routes, "*.ts" files inside "pages/api" for the json response routes, and "components" which will have React spread on the server and client. The spreading will be controlled with special Astro annotations inside "*.astro" files, such as "<SignupPage client:load />" which is no longer JSX.
-
-In addition, the spreading/blending is done by choosing one of the three major [Astro rendering modes](https://docs.astro.build/en/basics/rendering-modes/): "static" (SSG), "server" (SSR), or "hybrid". For example, I set "output: 'server'" inside "astro.config.mjs". 
-
-Each of these modes comes with a few further Astro annotations that control rendering. This is well explained by [Coding in Public, 2023](https://www.youtube.com/watch?v=aIHRjloFASU).
+The need to split JSX/React into HTML and Js is ugly, whereas a metaframework will allow to import a React component and use it more directly.
 
 ## Doubts About Astro
 
-I will list a few cons about Astro that come from my experience.
+Astro can serve as a React metaframework, but it is not particularly good at it.
 
-1. SSG mode produces annoying React errors which are actually just warnings: [418](https://react.dev/errors/418?invariant=418), [423](https://react.dev/errors/423?invariant=423). Not a big deal, but shows some problems with design.  
+1. SSG mode produces annoying React errors which are actually just warnings: [418](https://react.dev/errors/418?invariant=418), [423](https://react.dev/errors/423?invariant=423). Not a big deal, but still.
 
 2. "npm run build" produces only absolute paths controlled with "site" and "base", which is not enough, esp. if you want to use github pages. Manual editing will be needed, which is not a good DX.
 
-3. Most essentially, why "*.astro", why not just JSX/TypeScript? Should I write any component in Astro or React?
-
-    ".astro" is so confusing:
+3. Why not just JSX/React? "*.astro" is like an HTML or JSX, but is neither of them:
 
     ```astro
     <div class="min-h-screen gap-4 lg:gap-24 lg:w-3/5 mx-auto flex flex-col items-center text-base-content">
@@ -150,13 +140,15 @@ I will list a few cons about Astro that come from my experience.
     </div>
     ```
 
-    "class" comes from HTML, but wraps a JSX/React component which would demand "className" above it in a proper JSX. Moreover, "client:load" annotation inside what looks to be a JSX syntax. Imagine passing props with all sorts of components inside components and the hell these "markups inside markups" will produce. 
+    Here "class" comes from HTML, but wraps a JSX/React component which would demand "className" above it in JSX proper. Moreover, "client:load" annotation inside what looks to be a JSX syntax. Imagine passing props with all sorts of components inside components and the hell these "markups inside markups" will produce.
 
-I believe the metaframework problem is a counterproductive jungle that works only in shallow cases. Keep React on the front side. Use Express or Hono to connect it to DB via the REST API, or some paid 3rd party. Do not render React on the server at all, do not worry about "typed REST" or removing REST. React for the SPA. Routing on the client side?
+Ultimately, Astro does avoid passing code as strings, and is easy to use and understand. However, I want TypeScript and its libraries, not "*.astro".
 
-TBC...
+Next.js or a React SPA with Hono. TBC...
 
 ## References
+
+1. [Vercel completes $250 mln Series E round at $3.25 bln valuation, 2024](https://www.reuters.com/technology/vercel-completes-250-mln-series-e-round-325-bln-valuation-2024-05-16/)
 
 1. [Web Dev Cody: How much money did my channel earn this year. youtube, 2024](https://www.youtube.com/watch?v=qwXvW_fN_9k)
 

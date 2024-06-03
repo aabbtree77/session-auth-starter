@@ -94,6 +94,8 @@ return ctx.html(`
     <div id="root">${htmlString}</div>
   </body>
 </html>
+`);
+});
 ```
 
 The HTML part needs to load all the aux transpiler stuff and do "Js hydration". Since JSX needs to become Js, we now must stringify the React component the second time:
@@ -140,17 +142,17 @@ I will list a few cons about Astro that come from my experience.
 
 3. Most essentially, why "*.astro", why not just JSX/TypeScript? Should I write any component in Astro or React?
 
-This is so confusing:
+    ".astro" is so confusing:
 
-```astro
-<div class="min-h-screen gap-4 lg:gap-24 lg:w-3/5 mx-auto flex flex-col items-center text-base-content">
-    <Header client:load />
-</div>
-```
+    ```astro
+    <div class="min-h-screen gap-4 lg:gap-24 lg:w-3/5 mx-auto flex flex-col items-center text-base-content">
+        <Header client:load />
+    </div>
+    ```
 
-"class" comes from HTML, but wraps a JSX/React component which would demand "className" above it in a proper JSX. Moreover, "client:load" annotation inside what looks to be a JSX syntax. Imagine passing props with all sorts of components inside components and the hell these "markups inside markups" will produce. 
+    "class" comes from HTML, but wraps a JSX/React component which would demand "className" above it in a proper JSX. Moreover, "client:load" annotation inside what looks to be a JSX syntax. Imagine passing props with all sorts of components inside components and the hell these "markups inside markups" will produce. 
 
-The whole server-client blending problem space is a counterproductive jungle that works only in shallow cases. Keep React on the front side. Use Express or Hono to connect it to DB via the REST API, or some paid 3rd party. Do not render React on the server at all, do not worry about "typed REST" or removing REST. React for the SPA. Routing on the client side?
+I believe the metaframework problem is a counterproductive jungle that works only in shallow cases. Keep React on the front side. Use Express or Hono to connect it to DB via the REST API, or some paid 3rd party. Do not render React on the server at all, do not worry about "typed REST" or removing REST. React for the SPA. Routing on the client side?
 
 TBC...
 

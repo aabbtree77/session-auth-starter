@@ -126,13 +126,13 @@ The need to split JSX/React into HTML and Js is ugly, whereas a metaframework wi
 
 ## Doubts About Astro
 
-Astro can serve as a React metaframework, but it is not particularly good at it.
+Astro can serve as a React metaframework, but it is not particularly good at it:
 
-1. SSG mode produces annoying React errors which are actually just warnings: [418](https://react.dev/errors/418?invariant=418), [423](https://react.dev/errors/423?invariant=423). Not a big deal, but still.
+1. The whole code base is now infected with "*.astro" which React cannot call.
 
-2. "npm run build" produces only absolute paths controlled with "site" and "base", which is not enough, esp. if you want to use github pages. Manual editing will be needed, which is not a good DX.
+2. Yet another templating language with its endless disadvantages and very few conveniences.
 
-3. Why not just JSX/React? "*.astro" is like an HTML or JSX, but is neither of them:
+3. You are never 100% sure if placing some HTML or Ts/JSX inside "*.astro" will work.
 
     ```astro
     <div class="min-h-screen gap-4 lg:gap-24 lg:w-3/5 mx-auto flex flex-col items-center text-base-content">
@@ -140,9 +140,13 @@ Astro can serve as a React metaframework, but it is not particularly good at it.
     </div>
     ```
 
-    Here "class" comes from HTML, but wraps a JSX/React component which would demand "className" above it in JSX proper. Moreover, "client:load" annotation inside what looks to be a JSX syntax. Imagine passing props with all sorts of components inside components and the hell these "markups inside markups" will produce.
+    Here "class" comes from HTML, but wraps a JSX/React component which would demand "className" above it in the JSX proper, the "client:load" annotation inside what looks to be a JSX syntax. I understand the reasoning. Nobody wants a new entire language, so the creators keep "*.astro" close to what we already know, but this makes it even worse, it is like forking JSX. The same problem with Svelte.
 
-Ultimately, Astro does avoid passing code as strings, and is easy to use and understand. However, I want TypeScript and its libraries, not "*.astro".
+4. Minor quibbles: the SSG mode produces annoying React errors which are actually just warnings: [418](https://react.dev/errors/418?invariant=418), [423](https://react.dev/errors/423?invariant=423). Not a big deal, but still.
+
+5. Minor quibbles: "npm run build" produces only absolute paths controlled with "site" and "base", which is not enough, esp. if you want to use github pages. Manual editing will be needed, which is not a good DX.
+
+Ultimately, Astro does avoid passing code as strings, and is easy to use at a shallow heterogeneous component interaction. However, I want everything TypeScript, not "*.astro". That is the whole point of Node.js and "the JavaScript community", is it not?!
 
 Next.js or a React SPA with Hono. TBC...
 

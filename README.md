@@ -6,7 +6,7 @@
 
 This is a starter template for a web app with a session-based user name and password authentication, no email communication and password resets.
 
-Node.js, TypeScript, React, Lucia v3. A web framework is Astro, but this might change.
+Node.js, TypeScript, React, Lucia v3. A web framework is Astro, but this will change.
 
 The code is based on "Lucia Astro User Name Password" example provided in Lucia docs.
 
@@ -130,9 +130,9 @@ Astro can serve as a React metaframework, but it is not particularly good at it:
 
 1. The whole code base is now infected with "*.astro" which React cannot call.
 
-2. Yet another templating language with its endless disadvantages and very few conveniences.
+2. Yet another templating language.
 
-3. You are never 100% sure if placing some HTML or Ts/JSX inside "*.astro" will work.
+3. With React, Astro feels like JSX forked:
 
     ```astro
     <div class="min-h-screen gap-4 lg:gap-24 lg:w-3/5 mx-auto flex flex-col items-center text-base-content">
@@ -140,15 +140,15 @@ Astro can serve as a React metaframework, but it is not particularly good at it:
     </div>
     ```
 
-    Here "class" comes from HTML, but wraps a JSX/React component which would demand "className" above it in the JSX proper, the "client:load" annotation inside what looks to be a JSX syntax. I understand the reasoning. Nobody wants a new entire language, so the creators keep "*.astro" close to what we already know, but this makes it even worse, it is like forking JSX. The same problem with Svelte.
+    Here "class" comes from HTML, but wraps a JSX/React component which would demand "className" above it in the JSX proper. The "client:load" annotation inside what looks to be a JSX syntax. This is good only when writing everything in "*.astro" with a few independent React pieces. Otherwise it will be very confusing.
 
-4. Minor quibbles: the SSG mode produces annoying React errors which are actually just warnings: [418](https://react.dev/errors/418?invariant=418), [423](https://react.dev/errors/423?invariant=423). Not a big deal, but still.
+4. The SSG mode produces annoying React errors which are actually just warnings: [418](https://react.dev/errors/418?invariant=418), [423](https://react.dev/errors/423?invariant=423). Not a big deal, but still.
 
-5. Minor quibbles: "npm run build" produces only absolute paths controlled with "site" and "base", which is not enough, esp. if you want to use github pages. Manual editing will be needed, which is not a good DX.
+5. "npm run build" creates only absolute paths controlled with "site" and "base", which is not enough, esp. if you want to use github pages. Manual editing will be needed.
 
-Ultimately, Astro does avoid passing code as strings, and is easy to use at a shallow heterogeneous component interaction. However, I want everything TypeScript, not "*.astro". That is the whole point of Node.js and "the JavaScript community", is it not?!
+Ultimately, Astro does avoid passing code as strings, and is easy to use with a shallow heterogeneous component interaction. However, we want everything TypeScript, not "*.astro". That is the whole point of Node.js and "the JavaScript community", is it not?!
 
-Next.js or a React SPA with Hono. TBC...
+[The newest Next.js](https://www.youtube.com/@ugurcodes/videos) or a React SPA with Hono?! TBC...
 
 ## References
 

@@ -4,16 +4,14 @@
 
 ## Introduction
 
-This is a starter template for a web app with a session-based user name and password authentication, no email communication and password resets.
-
-Node.js, TypeScript, React, Lucia v3. A web framework is Astro, but this will change.
-
-The code is based on "Lucia Astro User Name Password" example provided in Lucia docs.
+This is a starter template for a web app with a session-based authentication. It is based on "Lucia Astro User Name Password" example provided in Lucia docs. Node.js, TypeScript, React, Lucia v3, Astro.
 
 ```sh
 npm install
 npm run dev
 ```
+
+The sole reason for this code is to practice web development with a metaframework, and see what these modern Js tools (Astro, Next.js, SvelteKit, Remix...) have to offer. This Astro-based code works and is quite readable, perhaps more readable and hassle-free than any other way, but I do not like the idea of a metaframework now that I have tried it.
 
 ## Official "Lucia Astro UserName Password" Example
 
@@ -63,66 +61,7 @@ to an in-process file-based SQLite managed with, say, Drizzle ORM. CSRF protecti
 
 The weakest link in this whole technology stack is a metaframework.
 
-## Why Do We Need Metaframeworks? 
-
-The problem is React, and the desire to reuse it on the server side instead of some obscure templating.
-
-Rendering React on the server side manually is cumbersome.
-
-Typically, one must first convert a React component to a string, e.g. 
-
-```jsx
-import { renderToString } from 'react-dom/server';
-const htmlString = renderToString(<MyReactComp />);
-```
-    
-JSX thus becomes an HTML which can be rendered inside, say, Hono route:
-
-```jsx
-app.get('/', (ctx) => {
-return ctx.html(`
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Signup Form</title>
-  </head>
-  <body>
-    <div id="root">${htmlString}</div>
-  </body>
-</html>
-`);
-});
-```
-
-However, this is not enough and one must add "Js hydration". Since JSX needs to become Js, we must stringify the React component the second time:
-    
-```jsx
-return ctx.html(`
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Signup Form</title>
-  </head>
-  <body>
-    <div id="root">${htmlString}</div>
-    <script src="https://unpkg.com/react/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script type="text/babel">
-      const { useState } = React;
-      const MyReactComp = ${MyReactComp.toString()};
-      ReactDOM.hydrate(React.createElement(MyReactComp), document.getElementById('root'));
-    </script>
-  </body>
-</html>
-`);
-```
-    
-The need to split JSX/React into HTML and Js is ugly, whereas a metaframework will allow to import a React component and use it more directly.
+Why do we need one? The problem is React, and the desire to reuse it on the server instead of some HTML templating. However, nobody knows what a server-side React really is. React does not come with the whole mini-browser, the way Electron does. Some server-side React parts can be sent back to the frontend, some will be reduced to just a static HTML, some are just forbidden, this is all very hacky, rushed, and fragile.
 
 ## Doubts About Astro
 
@@ -142,13 +81,13 @@ Astro can serve as a React metaframework, but it is not particularly good at it:
 
     Here "class" comes from HTML, but wraps a JSX/React component which would demand "className" above it in the JSX proper. The "client:load" annotation inside what looks to be a JSX syntax. This is good only when writing everything in "*.astro" with a few independent React pieces. Otherwise it will be very confusing.
 
-4. The SSG mode produces annoying React errors which are actually just warnings: [418](https://react.dev/errors/418?invariant=418), [423](https://react.dev/errors/423?invariant=423). Not a big deal, but still.
+4. The SSG mode produces annoying React errors (warnings): [418](https://react.dev/errors/418?invariant=418), [423](https://react.dev/errors/423?invariant=423).
 
 5. "npm run build" creates only absolute paths controlled with "site" and "base", which is not enough, esp. if you want to use github pages. Manual editing will be needed.
 
-Ultimately, Astro does avoid passing code as strings, and is easy to use with a shallow heterogeneous component interaction. However, we want everything TypeScript, not "*.astro". That is the whole point of Node.js and "the JavaScript community", is it not?!
+Ultimately, Astro does avoid passing around React code as strings, and is easy to use with a shallow heterogeneous component interaction. However, we want everything TypeScript, not "*.astro". That is the whole point of Node.js and "the JavaScript community", is it not?!
 
-[The newest Next.js](https://www.youtube.com/@ugurcodes/videos) or a React SPA with Hono?! TBC...
+A React SPA with Vite and Hono, or just MERN. TBC...
 
 ## References
 

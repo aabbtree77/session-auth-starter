@@ -4,14 +4,14 @@
 
 ## Introduction
 
-This is a starter template for a web app with a session-based authentication. It is based on "Lucia Astro User Name Password" example provided in Lucia docs. Node.js, TypeScript, React, Lucia v3, Astro.
+This is a starter template for a CRUD web app with a session-based authentication. It is based on ["Lucia Astro User Name Password" example](https://github.com/lucia-auth/examples/tree/main). Node.js, TypeScript, React, Lucia v3, Astro.
 
 ```sh
 npm install
 npm run dev
 ```
 
-The sole reason for this code is to practice web development with a metaframework, and see what these modern Js tools (Astro, Next.js, SvelteKit, Remix...) have to offer. This Astro-based code works and is quite readable, perhaps more readable and hassle-free than any other way, but I do not like the idea of a metaframework now that I have tried it.
+The sole reason for this code is to practice web development with a metaframework. Kudos to [pilcrow](https://github.com/pilcrowOnPaper) for sharing complete examples with multiple authentication methods and multiple frameworks.
 
 ## Official "Lucia Astro UserName Password" Example
 
@@ -28,7 +28,7 @@ The sole reason for this code is to practice web development with a metaframewor
     npm i lucia better-sqlite3 @types/better-sqlite3 @lucia-auth/adapter-sqlite
     ```
 
-    Overwrite src folder with the one provided by [the git repo](https://github.com/lucia-auth/examples/tree/main/astro/username-and-password).
+    Overwrite the src folder with the one provided by [the git repo](https://github.com/lucia-auth/examples/tree/main/astro/username-and-password).
 
 Run `npm run dev`, the demo will show an unstyled form expecting a username with length between 3 and 31 characters, and only lowercase letters, 0-9, -, and _. Password no shorter than 6 characters.
 
@@ -61,7 +61,9 @@ to an in-process file-based SQLite managed with, say, Drizzle ORM. CSRF protecti
 
 The weakest link in this whole technology stack is a metaframework.
 
-Why do we need one? The problem is React, and the desire to reuse it on the server instead of some HTML templating. However, nobody knows what a server-side React really is. React does not come with the whole mini-browser, the way Electron does. Some server-side React parts can be sent back to the frontend, some will be reduced to just a static HTML, some are just forbidden, this is all very hacky, rushed, and fragile.
+Why do we need such a tool? One reason is to reuse React on the server instead of some HTML templating. See an Express code and compare it against quite a few major metaframeworks in [the Lucia auth examples](https://github.com/lucia-auth/examples/tree/main). Interestingly, considering all the endless Reddit discussions raging about the best framework choice, the code of all the metaframeworks looks more similar than different.
+
+The problem is, nobody knows what a server-side React really is. React does not come with the whole mini-browser, the way Electron does. Some server-side React parts can be sent back to the frontend, some will be reduced to just a static HTML, some are just forbidden, this is all very hacky, rushed, fragile.
 
 ## Doubts About Astro
 
@@ -87,7 +89,9 @@ Astro can serve as a React metaframework, but it is not particularly good at it:
 
 Ultimately, Astro does avoid passing around React code as strings, and is easy to use with a shallow heterogeneous component interaction. However, we want everything TypeScript, not "*.astro". That is the whole point of Node.js and "the JavaScript community", is it not?!
 
-A React SPA with Vite and Hono, or just MERN. TBC...
+## Conclusion
+
+I do not find metaframeworks solving the backend templating problem yet, but I will follow this noise for a while. At the moment, I think the most reliable productive stack for CRUD apps is a React SPA with Vite and Hono. MERN in vanilla Js (no TypeScript, no React), with ChatGPT 3.5, can also be a king in dependable code. TBC...
 
 ## References
 

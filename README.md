@@ -1,6 +1,8 @@
 > "There are no answers, only choices." - Stanisław Lem, Solaris, 1961
 
-> To do a dull thing with style is preferable to doing a dangerous thing without it." - Charles Bukowski, 1972
+> "To do a dull thing with style is preferable to doing a dangerous thing without it." - Charles Bukowski, 1972
+
+> "The narrowest path is always the holiest." - Depeche Mode, 1993 
 
 ## Introduction
 
@@ -61,10 +63,6 @@ to an in-process file-based SQLite managed with, say, Drizzle ORM. CSRF protecti
 
 The weakest link in this whole technology stack is a metaframework.
 
-Why do we need such a tool? One reason is to reuse React on the server instead of some HTML templating. See an Express code and compare it against quite a few major metaframeworks in [the Lucia auth examples](https://github.com/lucia-auth/examples/tree/main). Interestingly, considering all the endless Reddit discussions raging about the best framework choice, the code of all the metaframeworks looks more similar than different.
-
-The problem is, nobody knows what a server-side React really is. React does not come with the whole mini-browser, the way Electron does. Some server-side React parts can be sent back to the frontend, some will be reduced to just a static HTML, some are just forbidden, this is all very hacky, rushed, fragile.
-
 ## Doubts About Astro
 
 Astro can serve as a React metaframework, but it is not particularly good at it:
@@ -89,9 +87,13 @@ Astro can serve as a React metaframework, but it is not particularly good at it:
 
 Ultimately, Astro does avoid passing around React code as strings, and is easy to use with a shallow heterogeneous component interaction. However, we want everything TypeScript, not "*.astro". That is the whole point of Node.js and "the JavaScript community", is it not?!
 
+Metaframeworks are also very confusing as React is fundamentally a client side library being pushed to a server without the browser environment (unlike, say, the Electron desktop GUI technology).
+
 ## Conclusion
 
-I do not find metaframeworks solving the backend templating problem yet, but I will follow this noise for a while. At the moment, I think the most reliable productive stack for CRUD apps is a React SPA with Vite and Hono. MERN in vanilla Js (no TypeScript, no React), with ChatGPT 3.5, can also be a king in dependable code. TBC...
+I do not find metaframeworks solving the backend templating problem at all. They are a gigantic waste of time, still figuring out [how to submit a form](https://github.com/withastro/roadmap/blob/actions/proposals/0046-actions.md). This is interesting if you are into FP and compiler theory revolving around applied immutable trees with a state, ["lifting" and "hoisting"](https://www.youtube.com/watch?v=VdDJbrh23zo), or even ["network dissolving"](https://www.youtube.com/watch?v=cgxtLOYE2TE). Sadly, this is not a real stuff.
+
+I think the most reliable productive stack for CRUD apps is a React SPA with Vite and a router such as Express or Hono. MERN in vanilla Js (no TypeScript, no React), with ChatGPT 3.5, can also be a king in dependable code. TBC...
 
 ## References
 

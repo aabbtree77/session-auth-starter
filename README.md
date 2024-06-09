@@ -85,13 +85,15 @@ Astro can serve as a React metaframework, but it is not particularly good at it:
 
 5. "npm run build" creates only absolute paths controlled with "site" and "base", which is not enough, esp. if you want to use github pages. Manual editing will be needed.
 
+6. [Problems with nested components.](https://whoisryosuke.com/blog/2022/blog-refresh-2022#astro-nomical-issues)
+
 Ultimately, Astro does avoid passing around React code as strings, and is easy to use with a shallow heterogeneous component interaction. However, we want everything TypeScript, not "*.astro". That is the whole point of Node.js and "the JavaScript community", is it not?!
 
 Metaframeworks are also very confusing as React is fundamentally a client side library being pushed to a server without the browser environment (unlike, say, the Electron desktop GUI technology).
 
 ## Conclusion
 
-I do not find metaframeworks solving the backend templating problem at all. They are a gigantic waste of time, still figuring out [how to submit a form](https://github.com/withastro/roadmap/blob/actions/proposals/0046-actions.md). This is interesting if you are into FP and compiler theory revolving around applied immutable trees with a state, ["lifting" and "hoisting"](https://www.youtube.com/watch?v=VdDJbrh23zo), or even ["network dissolving"](https://www.youtube.com/watch?v=cgxtLOYE2TE). Sadly, this is not a real stuff.
+I do not find metaframeworks solving the backend templating problem at all. They are a gigantic waste of time, still figuring out [how to submit a form](https://github.com/withastro/roadmap/blob/actions/proposals/0046-actions.md). This is interesting if you are into FP and compiler theory revolving around applied immutable trees with a state, ["lifting" and "hoisting"](https://www.youtube.com/watch?v=VdDJbrh23zo), ["network dissolving"](https://www.youtube.com/watch?v=cgxtLOYE2TE). Sadly, this is not a real stuff.
 
 I think the most reliable productive stack for CRUD apps is a React SPA with Vite and a router such as Express or Hono. MERN in vanilla Js (no TypeScript, no React), with ChatGPT 3.5, can also be a king in dependable code. TBC...
 

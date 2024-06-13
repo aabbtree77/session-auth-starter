@@ -69,9 +69,7 @@ Astro can serve as a React metaframework, but it is not particularly good at it:
 
 1. The whole code base is now infected with "*.astro" which React cannot call.
 
-2. Yet another templating language.
-
-3. With React, Astro feels like JSX forked:
+2. Yet another obscure templating language with no clear answer to "why not JSX?":
 
     ```astro
     <div class="min-h-screen gap-4 lg:gap-24 lg:w-3/5 mx-auto flex flex-col items-center text-base-content">
@@ -81,21 +79,21 @@ Astro can serve as a React metaframework, but it is not particularly good at it:
 
     Here "class" comes from HTML, but wraps a JSX/React component which would demand "className" above it in the JSX proper. The "client:load" annotation inside what looks to be a JSX syntax. This is good only when writing everything in "*.astro" with a few independent React pieces. Otherwise it will be very confusing.
 
-4. The SSG mode produces annoying React errors (warnings): [418](https://react.dev/errors/418?invariant=418), [423](https://react.dev/errors/423?invariant=423).
+3. The SSG mode produces annoying React errors (warnings): [418](https://react.dev/errors/418?invariant=418), [423](https://react.dev/errors/423?invariant=423).
 
-5. "npm run build" creates only absolute paths controlled with "site" and "base", which is not enough, esp. if you want to use github pages. Manual editing will be needed.
+4. "npm run build" creates only absolute paths controlled with "site" and "base", which is not enough, esp. if you want to use github pages. Manual editing will be needed.
 
-6. [Problems with nested components.](https://whoisryosuke.com/blog/2022/blog-refresh-2022#astro-nomical-issues)
+5. [Problems with nested scopes.](https://whoisryosuke.com/blog/2022/blog-refresh-2022#astro-nomical-issues)
 
-Ultimately, Astro does avoid passing around React code as strings, and is easy to use with a shallow heterogeneous component interaction. However, we want everything TypeScript, not "*.astro". That is the whole point of Node.js and "the JavaScript community", is it not?!
+Ultimately, Astro does avoid passing around React code as strings, and is easy to use with shallow heterogeneous component interactions. Pairing it with Lucia v3, one can set up a working authentication demo in no time. However, I want everything TypeScript, not "*.astro". That is the whole point of Node.js and "the JavaScript community", is it not?!
 
-Metaframeworks are also very confusing as React is fundamentally a client side library being pushed to a server without the browser environment (unlike, say, the Electron desktop GUI technology).
+## Further Observations
 
-## Conclusion
+1. Metaframeworks are not solving the problem of how to build real stuff better. The big are already too big to fail, drowning in VC and complexity that has hit their fragile designs. The small ones are into the FP and compiler theory revolving around applied immutable trees with a state, ["lifting" and "hoisting"](https://www.youtube.com/watch?v=VdDJbrh23zo), ["network dissolving"](https://www.youtube.com/watch?v=cgxtLOYE2TE)... Most of the metaframework authors do not do regular web development, nor do they care about CRUD.
 
-I do not find metaframeworks solving the backend templating problem at all. They are a gigantic waste of time, still figuring out [how to submit a form](https://github.com/withastro/roadmap/blob/actions/proposals/0046-actions.md). This is interesting if you are into FP and compiler theory revolving around applied immutable trees with a state, ["lifting" and "hoisting"](https://www.youtube.com/watch?v=VdDJbrh23zo), ["network dissolving"](https://www.youtube.com/watch?v=cgxtLOYE2TE). Sadly, this is not a real stuff.
+2. Some kind of minimal client-side React improves vanilla Js, but not by a lot, and there is always a shadow of a doubt. Even raison d'être for TypeScript is not that clear to me. It helps to catch typos, no doubt, but it also adds needless complexity. Solving generic type sharades in async FP code caboodles is hardly relevant to real business problems an app aims to solve.
 
-I think the most reliable productive stack for CRUD apps is a React SPA with Vite and a router such as Express or Hono. MERN in vanilla Js (no TypeScript, no React), with ChatGPT 3.5, can also be a king in dependable code. TBC...
+3. Perhaps the best way does not exist. It could be a React SPA with Vite and a router such as Express or Hono, and lets say TypeScript. TBC...
 
 ## References
 

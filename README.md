@@ -69,7 +69,7 @@ Astro can serve as a React metaframework, but it is not particularly good at it:
 
 1. The whole code base is now infected with "*.astro" which React cannot call.
 
-2. Yet another obscure templating language with no clear answer to "why not JSX?":
+2. Astro allows writing HTML, JSX, and "JSX-forked", which is quite confusing:
 
     ```astro
     <div class="min-h-screen gap-4 lg:gap-24 lg:w-3/5 mx-auto flex flex-col items-center text-base-content">
@@ -77,7 +77,7 @@ Astro can serve as a React metaframework, but it is not particularly good at it:
     </div>
     ```
 
-    Here "class" comes from HTML, but wraps a JSX/React component which would demand "className" above it in the JSX proper. The "client:load" annotation inside what looks to be a JSX syntax. This is good only when writing everything in "*.astro" with a few independent React pieces. Otherwise it will be very confusing.
+    Notice "class" instead of "className" and the "client:load" annotation inside what looks to be a JSX component.
 
 3. The SSG mode produces annoying React errors (warnings): [418](https://react.dev/errors/418?invariant=418), [423](https://react.dev/errors/423?invariant=423).
 
@@ -89,22 +89,27 @@ Ultimately, Astro does avoid passing around React code as strings, and is easy t
 
 ## Further Observations
 
-1. Metaframeworks are not solving the problem of how to build real stuff better. The big are already too big to fail, drowning in VC and complexity that has hit their fragile designs. The small ones are into the FP and compiler theory revolving around applied immutable trees with a state, ["lifting" and "hoisting"](https://www.youtube.com/watch?v=VdDJbrh23zo), ["network dissolving"](https://www.youtube.com/watch?v=cgxtLOYE2TE)... Most of the metaframework authors do not do regular web development, nor do they care about CRUD.
+1. It is Next.js and little else at this point (2024). In any case, this is the culture of massive delegation to paid 3rd party services (Clerk, Convex, Supabase, Turso, Astro DB, Resend, PostHog, Jeeliz...) and hosting on the serverless, smarter-than-AWS cloud platforms (Vercel, Cloudflare, Render...). Ship fast, fail fast.
 
-2. Some kind of minimal client-side React improves vanilla Js, but not by a lot, and there is always a shadow of a doubt. Even raison d'être for TypeScript is not that clear to me. It helps to catch typos, no doubt, but it also adds needless complexity. Solving generic type sharades in async FP code caboodles is hardly relevant to real business problems an app aims to solve.
+2. Going serverless is scary for an indie developer due to DDoS and virtually nonexisting payment caps. A company will survive a casual 10K-euro bill.
 
-3. Perhaps the best way does not exist. It could be a React SPA with Vite and a router such as Express or Hono, and lets say TypeScript. TBC...
+3. Youtube is now mostly superficial tutorials made for a living by affiliated authors who promote 3rd party services. They jump from stack to stack, they do not stick to anything for long unless it is Next.js. A tutorial is just an ad and one needs a lot of them. However, we learn how to build a complete product very fast, by connecting opaque remote APIs. Anything else is considered rocket science and astronautics. 
+
+I do not know if this is a fundamental trend and a new way, or just needless layers. TBC...
 
 ## References
 
 1. [Vercel completes $250 mln Series E round at $3.25 bln valuation, 2024](https://www.reuters.com/technology/vercel-completes-250-mln-series-e-round-325-bln-valuation-2024-05-16/)
 
-1. [Web Dev Cody: How much money did my channel earn this year. youtube, 2024](https://www.youtube.com/watch?v=qwXvW_fN_9k)
+2. [Web Dev Cody: How much money did my channel earn this year. youtube, 2024](https://www.youtube.com/watch?v=qwXvW_fN_9k)
 
-2. Lichess.org: [Technology Stack](https://lichess.org/source), [Server Costs](https://docs.google.com/spreadsheets/d/1Si3PMUJGR9KrpE5lngSkHLJKJkb0ZuI4/preview)
+3. Lichess.org: [Technology Stack](https://lichess.org/source), [Server Costs](https://docs.google.com/spreadsheets/d/1Si3PMUJGR9KrpE5lngSkHLJKJkb0ZuI4/preview)
 
-2. [Web Dev Cody: How do server side authentication sessions work (express & cookies). youtube, 2023](https://www.youtube.com/watch?v=BgsQrOHNKeY&t=6s)
+4. [Web Dev Cody: Serverless might bankrupt you. youtube, 2024](https://www.youtube.com/watch?v=G5yNGd6sO-4)
 
-3. [Diona Rodrigues: Fetch API, do you really know how to handle errors? dev.to, 2023](https://dev.to/dionarodrigues/fetch-api-do-you-really-know-how-to-handle-errors-2gj0)
+5. [Web Dev Cody: How do server side authentication sessions work (express & cookies). youtube, 2023](https://www.youtube.com/watch?v=BgsQrOHNKeY&t=6s)
 
-4. [Austin Shelby: react-hook-form and zod. youtube, 2022](https://www.youtube.com/watch?v=4zt1eadehKQ)
+6. [Diona Rodrigues: Fetch API, do you really know how to handle errors? dev.to, 2023](https://dev.to/dionarodrigues/fetch-api-do-you-really-know-how-to-handle-errors-2gj0)
+
+7. [Austin Shelby: react-hook-form and zod. youtube, 2022](https://www.youtube.com/watch?v=4zt1eadehKQ)
+

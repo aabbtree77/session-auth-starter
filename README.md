@@ -1,8 +1,4 @@
-> "There are no answers, only choices." - Stanisław Lem, Solaris, 1961
-
-> "To do a dull thing with style is preferable to doing a dangerous thing without it." - Charles Bukowski, 1972
-
-> "The narrowest path is always the holiest." - Depeche Mode, 1993 
+> "Astroturfing: the deceptive practice of presenting an orchestrated marketing or public relations campaign in the guise of unsolicited comments from members of the public." - Oxford Languages
 
 ## Introduction
 
@@ -86,16 +82,6 @@ Astro can serve as a React metaframework, but it is not particularly good at it:
 5. [Problems with nested scopes.](https://whoisryosuke.com/blog/2022/blog-refresh-2022#astro-nomical-issues)
 
 Ultimately, Astro does avoid passing around React code as strings, and is easy to use with shallow heterogeneous component interactions. Pairing it with Lucia v3, one can set up a working authentication demo in no time. However, I want everything TypeScript, not "*.astro". That is the whole point of Node.js and "the JavaScript community", is it not?!
-
-## Further Observations
-
-1. It is Next.js and little else at this point (2024). In any case, this is the culture of massive delegation to paid 3rd party services (Clerk, Convex, Supabase, Turso, Astro DB, Resend, PostHog, Jeeliz...) and hosting on the serverless, smarter-than-AWS cloud platforms (Vercel, Cloudflare, Render...). Ship fast, fail fast.
-
-2. Going serverless is scary for an indie developer due to DDoS and virtually nonexisting payment caps. A company will survive a casual 10K-euro bill.
-
-3. Youtube is now mostly superficial tutorials made for a living by affiliated authors who promote 3rd party services. They jump from stack to stack, they do not stick to anything for long unless it is Next.js. A tutorial is just an ad and one needs a lot of them. However, we learn how to build a complete product very fast, by connecting opaque remote APIs. Anything else is considered rocket science and astronautics. 
-
-I do not know if this is a fundamental trend and a new way, or just needless layers. TBC...
 
 ## References
 

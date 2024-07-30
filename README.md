@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This is a starter template for a CRUD web app with a session-based authentication. It is based on ["Lucia Astro User Name Password" example](https://github.com/lucia-auth/examples/tree/main). Node.js, TypeScript, React, Lucia v3, Astro.
+This is a starter template for a CRUD web app with a session-based authentication. It is based on ["Lucia Astro User Name Password" example](https://github.com/lucia-auth/examples/tree/main). Node.js, TypeScript, React, Lucia v3, Astro. In essense, it is a multi-page application (with a server-side routing and Astro-specific redirects).
 
 ```sh
 npm install
@@ -81,7 +81,9 @@ Astro can serve as a React metaframework, but it is not particularly good at it:
 
 5. [Problems with nested scopes.](https://whoisryosuke.com/blog/2022/blog-refresh-2022#astro-nomical-issues)
 
-Ultimately, Astro does avoid passing around React code as strings, and is easy to use with shallow heterogeneous component interactions. Pairing it with Lucia v3, one can set up a working authentication demo in no time. However, I want everything TypeScript, not "*.astro". That is the whole point of Node.js and "the JavaScript community", is it not?!
+Ultimately, Astro does avoid passing around React code as strings. Pairing it with Lucia v3, one can set up a working authentication demo in no time. However, I want everything TypeScript, not "*.astro". There is also a lot of Astro and Lucia magic which makes coding like cobbling obscure 3rd party services which I would rather avoid. I also do not believe much in metaframeworks anymore as their coding patterns are not portable or universal.
+
+Status: Abandoned in favor of a hard splitting between [backend](https://github.com/aabbtree77/auth-starter-backend) (something minimal like Express or Hono, router-mostly, manual auth rewritten from scratch), and [frontend](https://github.com/aabbtree77/auth-starter-frontend) (Vite + React), which is essentially a single-page application (React router at the frontend).
 
 ## References
 

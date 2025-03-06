@@ -1,4 +1,8 @@
-> "Astroturfing: the deceptive practice of presenting an orchestrated marketing or public relations campaign in the guise of unsolicited comments from members of the public." - Oxford Languages
+> "Astroturfing: the deceptive practice of presenting an orchestrated marketing or public relations campaign in the guise of unsolicited comments from members of the public." 
+>
+> — *Oxford Languages*
+
+*Edit (March 6, 2025): This stack is no longer viable. Read my doubts about Astro below, Lucia is no longer interesting. [Better Auth](https://www.youtube.com/watch?v=QhA55R4u6uk&ab_channel=NevtheDev) is now the new hot thing ;).*
 
 ## Introduction
 

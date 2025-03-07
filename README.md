@@ -2,7 +2,7 @@
 >
 > — *Oxford Languages*
 
-*Edit (March 6, 2025): This stack is no longer viable. Read my doubts about Astro below, Lucia is no longer interesting. [Better Auth](https://www.youtube.com/watch?v=QhA55R4u6uk&ab_channel=NevtheDev) is now the new hot thing ;).*
+*Edit (March 2025): This stack is no longer viable. [Better Auth](https://www.youtube.com/watch?v=QhA55R4u6uk&ab_channel=NevtheDev) is now the new hot thing. [Inertia?](https://inertiajs.com/)*
 
 ## Introduction
 

@@ -2,7 +2,7 @@
 >
 > — *Oxford Languages*
 
-*Edit (March 2025): This stack is no longer viable. [Better Auth](https://www.youtube.com/watch?v=QhA55R4u6uk&ab_channel=NevtheDev) is now the new hot thing. [Inertia?](https://inertiajs.com/)*
+*Edit (March 2025): This stack is no longer viable. [Better Auth](https://www.youtube.com/watch?v=QhA55R4u6uk&ab_channel=NevtheDev) is now the new hot thing.*
 
 ## Introduction
 

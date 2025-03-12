@@ -2,18 +2,18 @@
 >
 > — *Oxford Languages*
 
-*Edit (March 2025): This stack is no longer viable. [Better Auth](https://www.youtube.com/watch?v=QhA55R4u6uk&ab_channel=NevtheDev) is now the new hot thing.*
+*Edit (March 2025): This stack is no longer viable. [Better Auth](https://www.youtube.com/watch?v=QhA55R4u6uk&ab_channel=NevtheDev) is a new hot thing.*
 
 ## Introduction
 
-This is a starter template for a CRUD web app with a session-based authentication. It is based on ["Lucia Astro User Name Password" example](https://github.com/lucia-auth/examples/tree/main). Node.js, TypeScript, React, Lucia v3, Astro. It is an MPA (multi-page application) with the Astro-specific server-side routing (src/pages), redirects such as *return Astro.redirect("/user")* inside signin.astro, and generic redirects such as *window.location.href = "/user";* inside the SignupForm component.
+This is a "starter template" for the CRUD with a session-based authentication. It is based on ["Lucia Astro User Name Password" example](https://github.com/lucia-auth/examples/tree/main). Node.js, TypeScript, React, Lucia v3, Astro, daisyUI. It is an MPA (multi-page application).
 
 ```sh
 npm install
 npm run dev
 ```
 
-The sole reason for this code is to check whether Astro can reduce friction and unify BE + FE. Kudos to [pilcrow](https://github.com/pilcrowOnPaper) for sharing complete examples with multiple authentication methods and multiple frameworks.
+The sole reason for this code is to check whether Astro is the way (it is not). Kudos to [pilcrow](https://github.com/pilcrowOnPaper) for sharing complete examples with multiple authentication methods and multiple frameworks.
 
 ## Official "Lucia Astro UserName Password" Example
 
@@ -65,11 +65,23 @@ The weakest link in this whole technology stack is the metaframework.
 
 ## Doubts About Astro
 
-Astro can serve as a React metaframework, but it is not particularly good at it:
+Astro can serve as React metaframework, but it is not particularly good at it:
 
 1. The whole code base is now infected with "*.astro" which React cannot call.
 
-2. Routing/redirects/passing around data is a mess, just like everywhere else.
+2. Routing/redirecting is still a mess:
+
+    * Astro.redirect("/user")
+    
+    * window.location.href = "/user"
+    
+    * User existence checks via Astro.locals.user with some env.d.ts weirdness. 
+    
+    * HTML links inside React components.
+    
+    * fetch with double await and manual error handling.
+
+    This might pertain to any web app, not necessarily the problem with Astro, but I just wish there was **send(address, data)** and **data = receive(address)** everywhere instead of all this "gardening".
 
 3. Astro allows writing HTML, JSX, and "JSX-forked", which is confusing:
 
@@ -87,7 +99,7 @@ Astro can serve as a React metaframework, but it is not particularly good at it:
 
 6. [Problems with nested scopes.](https://whoisryosuke.com/blog/2022/blog-refresh-2022#astro-nomical-issues)
 
-Ultimately, Astro does avoid passing around React code as strings. Pairing it with Lucia v3, one can set up a minimal authentication demo. However, there is a lot of Astro and Lucia magic which makes coding like cobbling obscure 3rd party services. The code patterns are unlikely to be portable or universal.
+Ultimately, Astro does avoid passing around React code as strings. Pairing it with Lucia v3, one can set up a minimal authentication demo. However, there is a lot of Astro and Lucia magic which makes coding like cobbling up obscure 3rd party services. The code patterns are unlikely to be portable or universal.
 
 **Status:** Abandoned all the metaframeworks entirely in favor of a hard split between [backend](https://github.com/aabbtree77/auth-starter-backend) (something minimal like Express or Hono, router-mostly, manual auth rewritten from scratch), and [frontend](https://github.com/aabbtree77/auth-starter-frontend) (Vite + React), which is essentially a single-page application (React router at the frontend). Better have less automation, but more stability and understanding what goes underneath.
 

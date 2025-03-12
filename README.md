@@ -71,17 +71,17 @@ Astro can serve as React metaframework, but it is not particularly good at it:
 
 2. Routing/redirecting is still a mess:
 
-    * Astro.redirect("/user")
+    * Astro.redirect("/user"),
     
-    * window.location.href = "/user"
+    * window.location.href = "/user",
     
-    * User existence checks via Astro.locals.user with some env.d.ts weirdness. 
+    * Astro.locals.user with some env.d.ts weirdness, 
     
-    * HTML links inside React components.
+    * HTML links inside React components,
     
-    * fetch with double await and manual error handling.
+    * fetch with double await and manual error handling...
 
-    This might pertain to any web app, not necessarily the problem with Astro, but I just wish there was **send(address, data)** and **data = receive(address)** everywhere instead of all this "gardening".
+    This is not necessarily the problem created by Astro, but I just wish there was *send(address, data)* and *data = receive(address)* instead of all this "gardening".
 
 3. Astro allows writing HTML, JSX, and "JSX-forked", which is confusing:
 

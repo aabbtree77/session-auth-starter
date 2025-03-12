@@ -6,14 +6,14 @@
 
 ## Introduction
 
-This is a starter template for a CRUD web app with a session-based authentication. It is based on ["Lucia Astro User Name Password" example](https://github.com/lucia-auth/examples/tree/main). Node.js, TypeScript, React, Lucia v3, Astro. In essense, it is a multi-page application (with a server-side routing and Astro-specific redirects).
+This is a starter template for a CRUD web app with a session-based authentication. It is based on ["Lucia Astro User Name Password" example](https://github.com/lucia-auth/examples/tree/main). Node.js, TypeScript, React, Lucia v3, Astro. It is an MPA (multi-page application) with the Astro-specific server-side routing (src/pages), redirects such as *return Astro.redirect("/user")* inside signin.astro, and generic redirects such as *window.location.href = "/user";* inside the SignupForm component.
 
 ```sh
 npm install
 npm run dev
 ```
 
-The sole reason for this code is to practice web development with a metaframework. Kudos to [pilcrow](https://github.com/pilcrowOnPaper) for sharing complete examples with multiple authentication methods and multiple frameworks.
+The sole reason for this code is to check whether Astro can reduce friction and unify BE + FE. Kudos to [pilcrow](https://github.com/pilcrowOnPaper) for sharing complete examples with multiple authentication methods and multiple frameworks.
 
 ## Official "Lucia Astro UserName Password" Example
 
@@ -61,7 +61,7 @@ So far, I have continued with
 There is still a lot to do, like blocking everything GUI-reachable when a user submits a form, not just the form. Turn an in-memory SQLite
 to an in-process file-based SQLite managed with, say, Drizzle ORM. CSRF protection and all sorts of other protections.
 
-The weakest link in this whole technology stack is a metaframework.
+The weakest link in this whole technology stack is the metaframework.
 
 ## Doubts About Astro
 
@@ -69,7 +69,9 @@ Astro can serve as a React metaframework, but it is not particularly good at it:
 
 1. The whole code base is now infected with "*.astro" which React cannot call.
 
-2. Astro allows writing HTML, JSX, and "JSX-forked", which is quite confusing:
+2. Routing/redirects/passing around data is a mess, just like everywhere else.
+
+3. Astro allows writing HTML, JSX, and "JSX-forked", which is confusing:
 
     ```astro
     <div class="min-h-screen gap-4 lg:gap-24 lg:w-3/5 mx-auto flex flex-col items-center text-base-content">
@@ -79,15 +81,15 @@ Astro can serve as a React metaframework, but it is not particularly good at it:
 
     Notice "class" instead of "className" and the "client:load" annotation inside what looks to be a JSX component.
 
-3. The SSG mode produces annoying React errors (warnings): [418](https://react.dev/errors/418?invariant=418), [423](https://react.dev/errors/423?invariant=423).
+4. The SSG mode produces annoying React errors (warnings): [418](https://react.dev/errors/418?invariant=418), [423](https://react.dev/errors/423?invariant=423).
 
-4. "npm run build" creates only absolute paths controlled with "site" and "base", which is not enough, esp. if you want to use github pages. Manual editing will be needed.
+5. "npm run build" creates only absolute paths controlled with "site" and "base", which is not enough, esp. if you want to use github pages. Manual editing will be needed.
 
-5. [Problems with nested scopes.](https://whoisryosuke.com/blog/2022/blog-refresh-2022#astro-nomical-issues)
+6. [Problems with nested scopes.](https://whoisryosuke.com/blog/2022/blog-refresh-2022#astro-nomical-issues)
 
-Ultimately, Astro does avoid passing around React code as strings. Pairing it with Lucia v3, one can set up a working authentication demo in no time. However, I want everything TypeScript, not "*.astro". There is also a lot of Astro and Lucia magic which makes coding like cobbling obscure 3rd party services which I would rather avoid. I also do not believe much in metaframeworks anymore as their coding patterns are not portable or universal.
+Ultimately, Astro does avoid passing around React code as strings. Pairing it with Lucia v3, one can set up a minimal authentication demo. However, there is a lot of Astro and Lucia magic which makes coding like cobbling obscure 3rd party services. The code patterns are unlikely to be portable or universal.
 
-Status: Abandoned in favor of a hard splitting between [backend](https://github.com/aabbtree77/auth-starter-backend) (something minimal like Express or Hono, router-mostly, manual auth rewritten from scratch), and [frontend](https://github.com/aabbtree77/auth-starter-frontend) (Vite + React), which is essentially a single-page application (React router at the frontend).
+**Status:** Abandoned all the metaframeworks entirely in favor of a hard split between [backend](https://github.com/aabbtree77/auth-starter-backend) (something minimal like Express or Hono, router-mostly, manual auth rewritten from scratch), and [frontend](https://github.com/aabbtree77/auth-starter-frontend) (Vite + React), which is essentially a single-page application (React router at the frontend). Better have less automation, but more stability and understanding what goes underneath.
 
 ## References
 
